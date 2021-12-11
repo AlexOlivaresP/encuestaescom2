@@ -1,10 +1,16 @@
 <?php
+// PHP Data Objects(PDO) Sample Code:
+try {
+    $conn = new PDO("sqlsrv:server = tcp:escom.database.windows.net,1433; Database = escom", "escom", "Empanada123?");
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+}
+catch (PDOException $e) {
+    print("Error connecting to SQL Server.");
+    die(print_r($e));
+}
 
-     $conexion = mysqli_connect("localhost", "root", "root", "sistemaencuestas");
-
-     if( $conexion ) {
-          //echo $datos;
-     }else{
-          echo "Error en la conexion";
-     }
+// SQL Server Extension Sample Code:
+$connectionInfo = array("UID" => "escom", "pwd" => "Empanada123?", "Database" => "escom", "LoginTimeout" => 30, "Encrypt" => 1, "TrustServerCertificate" => 0);
+$serverName = "tcp:escom.database.windows.net,1433";
+$conn = sqlsrv_connect($serverName, $connectionInfo);
 ?>
